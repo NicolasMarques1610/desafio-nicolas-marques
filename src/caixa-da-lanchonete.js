@@ -13,21 +13,16 @@ const cardapio = [
 class CaixaDaLanchonete {
 
     calcularValorDaCompra(metodoDePagamento, itens) {
-        
         if(!validaMetodoPagamento.includes(metodoDePagamento)) return "Forma de pagamento inválida!";
-
         if(!itens.length) return "Não há itens no carrinho de compra!";
 
         itens = itens.map(i => { return { codigo: i.split(',')[0], quantidade: i.split(',')[1]}});
 
         if(!this.verificaItem(itens)) return "Item inválido!";
-
         if(!this.verificaQuantidade(itens)) return "Quantidade inválida!";
-
         if(!this.verificaItemExtra(itens)) return "Item extra não pode ser pedido sem o principal";
 
         return "R$ " + this.pagamentoTotal(itens, metodoDePagamento).toFixed(2).replace(".", ",");
-        
     }
 
     verificaItem(itens) {
@@ -77,7 +72,6 @@ class CaixaDaLanchonete {
         } else if(metodoDePagamento == validaMetodoPagamento[2]) {
             return this.pagamentoDinheiro(valorTotal);
         } else return valorTotal;
-
     }
 
     pagamentoDinheiro(valorTotal) {
